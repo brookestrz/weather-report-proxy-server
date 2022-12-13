@@ -28,13 +28,14 @@ def get_lat_lon():
 def get_weather():
     lat_query = request.args.get("lat")
     lon_query = request.args.get("lon")
+    unit_query = request.args.get("units")
     print(lat_query, lon_query)
     if not lat_query or not lon_query:
         return {"message": "must provide lat and lon parameters"}
 
     response = requests.get(
         "https://api.openweathermap.org/data/2.5/weather",
-        params={"lat": lat_query, "lon": lon_query, "appid": weather_key}
+        params={"lat": lat_query, "lon": lon_query,"units": unit_query,"appid": weather_key}
     )
     return response.json()
 
